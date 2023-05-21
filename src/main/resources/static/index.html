@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth2 Authorization</title>
+</head>
+<body>
+<button onclick="redirectToGoogle()">Google</button>
+<button onclick="redirectToGithub()">Github</button>
+<div id="accessToken"></div>
+<script>
+    function redirectToGithub() {
+        window.location.href = "/oauth2/authorize/github";
+    }
+    function redirectToGoogle() {
+        window.location.href = "/oauth2/authorize/google";
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessToken = urlParams.get('access_token');
+    if (accessToken) {
+        const accessTokenElement = document.getElementById('accessToken');
+        accessTokenElement.innerText = `Access token: ${accessToken}`;
+    }
+</script>
+</body>
+</html>
