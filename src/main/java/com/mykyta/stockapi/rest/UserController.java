@@ -12,20 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/users")
+@RequestMapping("api/v1/auth")
 public class UserController {
 
     private final UserRepository userRepository;
 
-    @GetMapping("/me")
+    @GetMapping("/info")
     public User getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
         return userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
-    }
-
-    @GetMapping("/me/id")
-    public Long getCurrentUserId(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-        return userPrincipal.getId();
     }
 
 }

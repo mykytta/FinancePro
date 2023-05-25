@@ -26,7 +26,7 @@ public class StockController {
     }
 
 
-    @DeleteMapping("/delete/{stockId}")
+    @DeleteMapping("/{stockId}")
     public ResponseEntity<String> deleteStock(@AuthenticationPrincipal UserPrincipal userPrincipal,
                                               @PathVariable("stockId") Long stockId) {
         stockService.deleteStock(userPrincipal, stockId);
@@ -39,7 +39,7 @@ public class StockController {
         return ResponseEntity.ok(stock);
     }
 
-    @GetMapping("/user")
+    @GetMapping()
     public ResponseEntity<List<StockDto>> getAllUserStocks(@AuthenticationPrincipal UserPrincipal userPrincipal) {
         List<StockDto> stocks = stockService.getAllUserStocks(userPrincipal);
         return ResponseEntity.ok(stocks);

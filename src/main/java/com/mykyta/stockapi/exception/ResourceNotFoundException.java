@@ -1,9 +1,11 @@
 package com.mykyta.stockapi.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+@EqualsAndHashCode(callSuper = false)
 @ResponseStatus(HttpStatus.NOT_FOUND)
 @Data
 public class ResourceNotFoundException extends RuntimeException {
